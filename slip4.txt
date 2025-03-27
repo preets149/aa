@@ -1,0 +1,50 @@
+1. Write a Java program using Runnable interface to blink Text on the frame. [15 M]
+public class blinkingtext implements Runnable {
+ boolean visible = true;
+ public void run() {
+ while (true) {
+ visible = !visible;
+ System.out.print("\r" + (visible ? "Blinking Text" : " "));
+ try {
+ Thread.sleep(500);
+ } catch (InterruptedException e) {
+ System.out.println("Thread interrupted");
+ }
+ }
+ }
+ public static void main(String[] args) {
+ Thread thread = new Thread(new blinkingtext());
+ thread.start();
+ }
+}
+2. Write a Java program to store city names and their STD codes using an appropriate collection 
+and perform following operations: i. Add a new city and its code (No duplicates) ii. iii. 3. Viva 
+Remove a city from the collection Search for a city name and display the code [15 M] [05 M] 
+import java.util.TreeMap;
+import java.util.Scanner;
+public class hasmap_city_std {
+ public static void main(String[] args) {
+ TreeMap<String, Integer> cityCodes = new TreeMap<>();
+ Scanner scanner = new Scanner(System.in);
+ cityCodes.put("Shirdi", 123);
+ cityCodes.put("Loni", 345);
+ cityCodes.put("Rahata", 789);
+ cityCodes.put("Kopargaon", 234);
+ System.out.println(cityCodes);
+ System.out.println("Enter city name to add:");
+ String city = scanner.nextLine();
+ System.out.println("Enter STD code:");
+ int code = scanner.nextInt();
+ cityCodes.put(city, code);
+ System.out.println("Enter city to remove:");
+ scanner.nextLine();
+ cityCodes.remove(scanner.nextLine());
+ System.out.println("Enter city to search:");
+ String searchCity = scanner.nextLine();
+ if (cityCodes.containsKey(searchCity)) {
+ System.out.println("STD Code: " + cityCodes.get(searchCity));
+ } else {
+ System.out.println("City not found!");
+}
+ }
+}

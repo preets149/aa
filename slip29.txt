@@ -1,0 +1,46 @@
+1. Write a Java program to display information about all columns in the DONAR table using 
+ResultSetMetaData. [15 M] 
+import java.sql.*; 
+public class S29Q1 { 
+ public static void main(String args[]) { 
+ try { 
+ Class.forName("org.postgresql.Driver"); 
+ Connection con = 
+DriverManager.getConnection("jdbc:postgresql://localhost:5432/ty92","ty92","ty
+92"); 
+ Statement stmt = con.createStatement(); 
+ ResultSet rs = stmt.executeQuery("SELECT * FROM Donor"); 
+ ResultSetMetaData rsmd = rs.getMetaData(); 
+ for(int i = 1; i <= rsmd.getColumnCount(); i++) { 
+ System.out.println("Column Name: " + rsmd.getColumnName(i)); 
+ System.out.println("Data Type: " + rsmd.getColumnTypeName(i)); 
+ System.out.println("Column Type: " + rsmd.getColumnType(i)); 
+ System.out.println("--------------------------------------------------"); 
+ } 
+ } catch (SQLException | ClassNotFoundException e) { 
+ System.out.println(e); 
+ } 
+2. } 
+}
+2. Write a Java program to create LinkedList of integer objects and perform the following: i. Add element 
+at first position ii. Delete last element iii. Display the size of link list
+import java.util.LinkedList;
+import static java.util.Collections.reverse;
+public class LinkedList_add
+{
+ public static void main(String[] args) {
+ LinkedList<Integer> list = new LinkedList<>();
+ list.add(10);
+ list.add(20);
+ list.add(30);
+ list.add(40);
+ System.out.println("Original LinkedList: " + list);
+ list.addFirst(5);
+ System.out.println("After adding 5 at first position: " + list);
+ list.removeLast();
+ System.out.println("After deleting last element: " + list);
+ System.out.println("Size of LinkedList: " + list.size());
+ reverse(list);
+ System.out.println(list);
+ }
+}

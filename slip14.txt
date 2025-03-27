@@ -1,0 +1,82 @@
+1. Write a Java program for a simple search engine. Accept a string to be searched. Search the 
+string in all text files in the current folder. Use a separate thread for each file. The result should 
+display the filename and line number where the string is found. [15 M]
+import java.io.*;
+import java.util.*;
+class SearchFile extends Thread {
+ private File file;
+ private String searchString;
+ public SearchFile(File file, String searchString) {
+ this.file = file;
+ this.searchString = searchString;
+ }
+ public void run() {
+ try (Scanner sc = new Scanner(file)) {
+ int lineNumber = 0;
+ while (sc.hasNextLine()) {
+ lineNumber++;
+ if (sc.nextLine().contains(searchString)) {
+ System.out.println(file.getName() + " - Line " + lineNumber);
+ }
+ }
+ } catch (Exception e) {
+ System.out.println("Error reading: " + file.getName());
+ }
+ }
+}
+public class SimpleSearch {
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ System.out.print("Enter text to search: ");
+ String searchString = scanner.nextLine();
+ scanner.close();
+ File[] files = new File(".").listFiles((dir, name) -> name.endsWith(".txt"));
+ if (files == null || files.length == 0) {
+ System.out.println("No text files found.");
+ return;
+ }
+ for (File file : files) {
+ new SearchFile(file, searchString).start();
+ }
+ }
+}
+2. Write a JSP program to calculate sum of first and last digit of a given number. Display sum in Red 
+Color with font size 18.
+HTML FILE 
+<html> 
+<body> 
+<form method=post action="Slip7.jsp"> 
+Enter Any Number : <Input type=text name=num> 
+<input type=submit value=Display> 
+</form> 
+</body> 
+</html> 
+JSP FILE: 
+<%@page contentType="text/html" pageEncoding="UTF-8"> 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<%! intn,rem,r; %> 
+<% n=Integer.parseInt(request.getParameter("num")); 
+if(n<10) 
+{ 
+out.println("Sum of first and last digit is "); 
+%><font size=18 color=red><%= n %> 
+<% 
+} 
+else 
+{ 
+rem=n%10; 
+do 
+{ 
+r=n%10; 
+n=n/10; 
+}while(n>0); 
+n=rem+r; 
+out.println("Sum of first and last digit is "); 
+%><font size=18 color=red><%= n %> 
+<% 
+} 
+%> 
+</body> 
+</html> 

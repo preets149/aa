@@ -1,0 +1,55 @@
+1. Write a java program to accept ‘N’ integers from a user. Store and display integers in sorted 
+order having proper collection class. The collection should not accept duplicate elements. [15 
+M] 
+import java.util.Scanner;
+import java.util.TreeSet;
+public class slip17_1 {
+ public static void main(String[] args) {
+ TreeSet<Integer> numbers = new TreeSet<>();
+ Scanner sc = new Scanner(System.in);
+ System.out.print("Enter the number of elements (N): ");
+ int n = sc.nextInt();
+ System.out.println("Enter " + n + " integers:");
+ for (int i = 0; i < n; i++) {
+ numbers.add(sc.nextInt());
+ }
+ System.out.println("Sorted unique numbers: " + numbers);
+ }
+}
+2. Write a Multithreading program in java to display the number’s between 1 to 100 continuously 
+in a TextField by clicking on button. (Use Runnable Interface).
+import javax.swing.*;
+import java.awt.event.*;
+class NumberTask implements Runnable {
+ JTextField textField;
+ NumberTask(JTextField textField) {
+ this.textField = textField;
+ }
+ public void run() {
+ for (int i = 1; i <= 100; i++) {
+ textField.setText(i + ""); // Update number
+ try { Thread.sleep(100); } catch (Exception e) {} // Pause
+ }
+ }
+}
+public class SimpleCounter {
+ public static void main(String[] args) {
+ JFrame frame = new JFrame("Counter");
+ frame.setSize(200, 150);
+ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ frame.setLayout(null);
+ JTextField textField = new JTextField();
+ textField.setBounds(50, 20, 100, 30);
+ textField.setEditable(false);
+ frame.add(textField);
+ JButton button = new JButton("Start");
+ button.setBounds(50, 60, 100, 30);
+ frame.add(button);
+ button.addActionListener(new ActionListener() {
+ public void actionPerformed(ActionEvent e) {
+ new Thread(new NumberTask(textField)).start();
+ }
+ });
+ frame.setVisible(true);
+ }
+}

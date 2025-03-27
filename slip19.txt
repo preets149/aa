@@ -1,0 +1,54 @@
+1. Write a java program to accept ‘N’ Integers from a user store them into LinkedList Collection and 
+display only negative integers. [15 M] 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
+public class negative_order {
+ public static void main(String[] args) {
+ LinkedList<Integer> numbers = new LinkedList<>();
+ Scanner sc = new Scanner(System.in);
+ System.out.print("How many integers you want to enter (N): ");
+ int n = sc.nextInt();
+ System.out.println("Enter " + n + " integers:");
+ for (int i = 0; i < n; i++) {
+ numbers.add(sc.nextInt());
+ }
+ Iterator i = numbers.iterator();
+ while (i.hasNext()) {
+ int temp = (Integer) i.next();
+ if (temp < 0) {
+ System.out.println("negatives :"+temp);
+ }
+ //Optional part
+ else{
+ System.out.println("positives: "+temp);
+ }
+ }
+ }
+}
+2. Write a SERVLET application to accept username and password, search them into database, if 
+found then display appropriate message on the browser otherwise display error message.
+
+
+<!-- Slip - 19 Q2 [JAVA] --> 
+<!-- Write a SERVLET application to accept username and password, search them 
+into database, if found then display appropriate message on the browser 
+otherwise display error message. --> 
+ 
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Validate User</title> 
+    </head> 
+    <body> 
+        <form action="UserValidation" method="post"> 
+            <label for="username">Enter username:</label> 
+            <input type="text" id="username" name="username" required> 
+ 
+            <label for="password">Enter password:</label> 
+            <input type="password" id="password" name="password" required> 
+ 
+            <input type="submit" value="Submit"> 
+        </form> 
+    </body> 
+</html> 
