@@ -1,0 +1,19 @@
+root@computer18:ThinkCentre-M70t:/home/computer-18# sudo -u postgres psql
+could not change directory to "/home/computer-18": Permission denied
+psql (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+Type "help" for help.
+
+postgres=# create database bcs;
+CREATE DATABASE
+postgres=# \c bcs
+You are now connected to database "bcs" as user "postgres".
+bcs=# create user bcs with password 'bcs123';
+CREATE ROLE
+bcs=# create table student(id int primary key not null, name text not null, age int, address char(50));
+CREATE TABLE
+bcs=# insert into student(id, name, age, address) values(1, 'Rahul', 25, 'Loni');
+INSERT 0 1
+bcs=# insert into student(id, name, age, address) values(2, 'Ajay', 27, 'Rahata');
+INSERT 0 1
+bcs=# grant all privileges on student to bcs;
+GRANT
