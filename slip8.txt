@@ -33,7 +33,7 @@ public class covid {
 }
 
 
-Write a JSP program to check whether a given number is prime or not. Display the result in red color
+2.Write a JSP program to check whether a given number is prime or not. Display the result in red color
 
 Primeno.html 
 <html> 
